@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from './logo.svg';
+import logo from './airport.svg';
 import './App.css';
 
 import FlightSubmit from "./FlightSubmit";

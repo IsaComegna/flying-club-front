@@ -1,13 +1,14 @@
 import React from "react";
 
 class FlightSubmit extends React.Component {
-  
+
   state = {
     matriculaAluno : '',
     date: '',
     dateTimeStart : '',
     dateTimeEnd: '',
     comment: '',
+    grade: ''
   }
 
   handleChangeMatricula = (event) => {
@@ -35,6 +36,11 @@ class FlightSubmit extends React.Component {
     this.setState({comment: event.target.value});
   }
 
+  handleChangeGrade = (event) => {
+    // console.log('event',event.target.value);
+    this.setState({grade: event.target.value});
+  }
+
   handleSubmit =  (event) => {
     event.preventDefault();
     fetch("https://dog.ceo/api/breeds/image/random");
@@ -42,66 +48,98 @@ class FlightSubmit extends React.Component {
   }
 
   render() {
-    const {matriculaAluno, date, dateTimeEnd, dateTimeStart, comment} = this.state;
+    const {matriculaAluno, date, dateTimeEnd, dateTimeStart, comment, grade} = this.state;
 
     return (
-      <div className="page">
-        <span className="title"> Registro de voo </span>
-        <form onSubmit={this.handleSubmit} className="form">
-          <div className="input">
-            <label className="matricula">
-              Matricula do Aluno:
-              <input type="text" 
-                value={matriculaAluno}
-                onChange={this.handleChangeMatricula}
-                className="form-input"
-                />
-            </label>
-          </div>
-          <div className="flight-fields">
-            <div className="input">
-              <label>
-                Horário de Inicio:
-              <input type="time" 
-                value={dateTimeStart}
-                onChange={this.handleChangeDateTimeStart}
-                className="form-input"
-                />
-                  <label className="date-field">
-                    Dia:
-                    <input type="date" 
-                      value={date}
-                      onChange={this.handleChangeDate}
-                      className="form-input"
-                      />
-                  </label>
-              </label>
+      <div className="page-registry">
+        <div className="wrap-page-registry">
+          <form onSubmit={this.handleSubmit} className="form">
+            <span className="form-title">
+              Registro de voo
+            </span>
+
+            <div className="wrap-input bg1">
+              <span className="label-input">
+                MATRÍCULA DO ALUNO
+              </span>
+              <input type="text"
+                  value={matriculaAluno}
+                  onChange={this.handleChangeMatricula}
+                  className="form-input"
+                  placeholder= "0000"
+              />
             </div>
-            <div className="input">
-              <label>
-                Horário de Fim:
-              <input type="time" 
-                value={dateTimeEnd}
-                onChange={this.handleChangeDateTimeEnd}
-                className="form-input"
-                />
-              </label>
+
+            <div className="wrap-input bg1 wrap-input-start-time">
+              <span className="label-input">
+                Horário de Início do Voo
+              </span>
+              <input type="time"
+                  value={dateTimeStart}
+                  onChange={this.handleChangeDateTimeStart}
+                  className="form-input"
+              />
             </div>
-            <div className="input">
-              <label>
+
+            <div className="wrap-input bg1 wrap-input-end-time">
+              <span className="label-input">
+                Horário de Término do Voo
+              </span>
+              <input type="time"
+                  value={dateTimeEnd}
+                  onChange={this.handleChangeDateTimeEnd}
+                  className="form-input"
+              />
+            </div>
+
+            <div className="wrap-input bg1 wrap-input-date">
+              <span className="label-input">
+                Data do Voo
+              </span>
+              <input type="date"
+                  value={date}
+                  onChange={this.handleChangeDate}
+                  className="form-input"
+                  placeholder= "0000"
+              />
+            </div>
+
+            <div className="wrap-input bg1 wrap-input-grade">
+              <span className="label-input">
+                Nota
+              </span>
+              <input type="grade"
+                  value={grade}
+                  onChange={this.handleChangeGrade}
+                  className="form-input"
+                  placeholder= "0.0"
+              />
+            </div>
+
+
+            <div className="wrap-input bg0">
+              <span className="label-input">
                 Comentário:
-              <input type="text" 
+              </span>
+              <textarea
                 value={this.comment}
                 onChange={this.handleChangeComment}
-                className="form-input"
+                className="form-input-comment"
+                placeholder= "Seus comentários aqui"
                 />
-              </label>
             </div>
-            <div className="submit-button">
-              <input type="submit" value="Registrar"/>
+
+            <div className="container-form-btn">
+              <button className="register-flight-form-btn">
+                <span>
+                  Registrar
+                  <i className="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+                </span>
+              </button>
             </div>
-          </div>
-        </form>
+
+          </form>
+        </div>
       </div>
     );
   }
