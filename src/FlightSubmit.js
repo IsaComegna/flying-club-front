@@ -2,13 +2,17 @@ import React from "react";
 
 class FlightSubmit extends React.Component {
 
-  state = {
-    matriculaAluno : '',
-    date: '',
-    dateTimeStart : '',
-    dateTimeEnd: '',
-    comment: '',
-    grade: ''
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      matriculaAluno : '',
+      date: '',
+      dateTimeStart : '',
+      dateTimeEnd: '',
+      comment: '',
+      grade: ''
+    }
   }
 
   handleChangeMatricula = (event) => {
@@ -32,7 +36,8 @@ class FlightSubmit extends React.Component {
   }
 
   handleChangeComment = (event) => {
-    // console.log('event',event.target.value);
+    //console.log('event',event.target.value);
+
     this.setState({comment: event.target.value});
   }
 
@@ -43,9 +48,32 @@ class FlightSubmit extends React.Component {
 
   handleSubmit =  (event) => {
     event.preventDefault();
-    fetch("https://dog.ceo/api/breeds/image/random");
-    // console.log("this.state", this.state);
+
+    const parsedGrade = this.state.grade.replace(',', '.')
+    const [hourStart, minuteStart] = this.state.dateTimeStart.split(':');
+    const [hourEnd, minuteEnd] = this.state.dateTimeEnd.split(':');
+    const parsedStartDateTime = `${this.state.date} ${hourStart}:${minuteStart}:00`;
+    const parsedEndDateTime = `${this.state.date} ${hourEnd}:${minuteEnd}:00`;
+
+    let request_body = JSON.stringify({
+            grade: parsedGrade,
+            matricula_aluno: this.state.matriculaAluno,
+            comment: this.state.comment,
+            dateTimeFlightStart: parsedStartDateTime,
+            dateTimeFlightEnd: parsedEndDateTime,
+            registerDate: this.state.date
+          })
+
+    fetch("https://flying-club-engesoft.herokuapp.com/registro-voo", {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: request_body
+    });
   }
+
 
   render() {
     const {matriculaAluno, date, dateTimeEnd, dateTimeStart, comment, grade} = this.state;
@@ -122,7 +150,7 @@ class FlightSubmit extends React.Component {
                 Comentário:
               </span>
               <textarea
-                value={this.comment}
+                value={comment}
                 onChange={this.handleChangeComment}
                 className="form-input-comment"
                 placeholder= "Seus comentários aqui"
@@ -130,7 +158,7 @@ class FlightSubmit extends React.Component {
             </div>
 
             <div className="container-form-btn">
-              <button className="register-flight-form-btn">
+              <button className="register-flight-form-btn" type='submit'>
                 <span>
                   Registrar
                   <i className="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
