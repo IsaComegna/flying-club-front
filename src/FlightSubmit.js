@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 
 class FlightSubmit extends React.Component {
   
@@ -8,6 +9,7 @@ class FlightSubmit extends React.Component {
     dateTimeStart : '',
     dateTimeEnd: '',
     comment: '',
+    userTest:'',
   }
 
   handleChangeMatricula = (event) => {
@@ -39,6 +41,14 @@ class FlightSubmit extends React.Component {
     event.preventDefault();
     fetch("https://dog.ceo/api/breeds/image/random");
     // console.log("this.state", this.state);
+  }
+
+  handleOnClickButton = (event) => {
+    event.preventDefault();
+    const {matriculaAluno, date, dateTimeEnd, dateTimeStart, comment} = this.state;
+    axios.post("https://www.google.com",{matriculaAluno, date, dateTimeEnd, dateTimeStart, comment});
+    
+    console.log ({matriculaAluno, date, dateTimeEnd, dateTimeStart, comment});
   }
 
   render() {
@@ -98,7 +108,11 @@ class FlightSubmit extends React.Component {
               </label>
             </div>
             <div className="submit-button">
-              <input type="submit" value="Registrar"/>
+              <input 
+              type="submit" 
+              value="Registrar"
+              onClick = {this.handleOnClickButton}
+              />
             </div>
           </div>
         </form>
