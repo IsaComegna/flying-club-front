@@ -64,7 +64,7 @@ class FlightSubmit extends React.Component {
             dateTimeFlightEnd: parsedEndDateTime,
             registerDate: this.state.date
           })
-
+          
     fetch("https://flying-club-engesoft.herokuapp.com/registro-voo", {
       method: 'POST',
       headers: {
