@@ -7,7 +7,7 @@ class CreateUser extends React.Component {
     this.state = {
         name: '',
         cpf: '',
-        phoneNumber: '', 
+        phoneNumber: '',
         email: '',
         birthday: ''
         }
@@ -37,13 +37,13 @@ class CreateUser extends React.Component {
     // console.log('event',event.target.value);
     this.setState({phoneNumber: event.target.value});
   }
- 
+
   handleSubmit =  (event) => {
     event.preventDefault();
 
     const parsedCpf = this.state.cpf;
     const parsedPhoneNumber = this.state.phoneNumber;
-    //const parsedBirthday = 
+    //const parsedBirthday =
 
     let request_body = JSON.stringify({
             name: this.state.name,
@@ -53,7 +53,7 @@ class CreateUser extends React.Component {
             phone_number: parsedPhoneNumber,
             birthday: this.state.birthday
           })
-          
+
     fetch("https://flying-club-engesoft.herokuapp.com/registro-usuario", {
       method: 'POST',
       headers: {
@@ -111,7 +111,7 @@ class CreateUser extends React.Component {
 
            <div className="wrap-input bg1">
               <span className="label-input">
-                CPF 
+                CPF
               </span>
               <input type="text"
                   value={cpf}
@@ -123,7 +123,7 @@ class CreateUser extends React.Component {
 
             <div className="wrap-input bg1">
               <span className="label-input">
-                E-mail 
+                E-mail
               </span>
               <input type="text"
                   value={email}
@@ -135,7 +135,7 @@ class CreateUser extends React.Component {
 
             <div className="wrap-input bg1">
               <span className="label-input">
-                Telefone 
+                Telefone
               </span>
               <input type="text"
                   value={phoneNumber}
