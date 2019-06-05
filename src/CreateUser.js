@@ -2,14 +2,16 @@ import React from "react";
 import axios from "axios";
 
 class CreateUser extends React.Component {
-  
-  state = {
-    name: '',
-    cpf: '',
-    phoneNumber: '', 
-    email: '',
-    birthday: ''
-  }
+  constructor(props){
+    super(props)
+    this.state = {
+        name: '',
+        cpf: '',
+        phoneNumber: '', 
+        email: '',
+        birthday: ''
+        }
+    }
 
   handleChangeName = (event) => {
     // console.log('event',event.target.value);
@@ -38,8 +40,28 @@ class CreateUser extends React.Component {
  
   handleSubmit =  (event) => {
     event.preventDefault();
-    fetch("https://dog.ceo/api/breeds/image/random");
-    // console.log("this.state", this.state);
+
+    const parsedCpf = this.state.cpf;
+    const parsedPhoneNumber = this.state.phoneNumber;
+    //const parsedBirthday = 
+
+    let request_body = JSON.stringify({
+            name: this.state.name,
+            email: this.state.email,
+            user_type: "student",
+            cpf: parsedCpf,
+            phone_number: parsedPhoneNumber,
+            birthday: this.state.birthday
+          })
+          
+    fetch("https://flying-club-engesoft.herokuapp.com/registro-usuario", {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: request_body
+    });
   }
 
   handleOnClickButton = (event) => {
