@@ -4,11 +4,7 @@ import './App.css';
 
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-//import FlightSubmit from './FlightSubmit';
 import CreateUser from './CreateUser';
-
-
-
 import FlightSubmit from "./FlightSubmit";
 
 function App() {

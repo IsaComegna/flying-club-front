@@ -1,0 +1,25 @@
+### Estrutura de arquivos: ###
+
+# Na raiz do projeto estão os arquivos de configuração do projeto.
+
+- O arquivo ".gitignore" contém a informação de quais arquivos devem ser ignorados pelo github (são os arquivos que não são submetidos ao repositório).
+
+- O arquivo "package.json" e "package-lock.json" têm as informações de quais os pacotes necessários para o funcionamento do projeto e é a partir deles que o Heroku instala as dependências certas em sua máquina.
+
+# Pasta src
+Dentro da pasta src, encontra-se o código principal da aplicação.
+
+- No arquivo "App.css" estão todas as classes de estilo da aplicação. Optamos por utilizar apenas um arquivo com classes únicas para ambas as telas criadas de modo a diminuir a complexidade do projeto.
+
+- No arquivo "App.js" há uma função App() que basicamente determina as rotas em que cada página se encontrará no browser. O registro de voo está na url raiz do aplicativo ('/') e o registro de usuário na url cuja rota é (/registro).
+  Para conseguir fazer o roteamento, foi necessário implementar o ReactDOM.render em "index.js"
+
+- Os arquivos "FlightSubmit.js" e "CreateUser.js" têm funções correspondentes ao preenchimento e envio do formulário de registro de voo e de usuário. Eles também implementam a estrutura html das páginas.
+
+### Especificações do projeto ###
+- Utilizou-se o framework React
+- A aplicação encontra-se no Heroku na url 'https://flying-club-app.herokuapp.com/'
+
+## Como testar o projeto ##
+- Para fazer os testes em produção do projeto, é possível fazê-los pelo browser na url  'https://flying-club-app.herokuapp.com/' e consultando as Apis do backend para observar a efetividade do envio e escrita no banco de dados da aplicação.
+Não foi implementado nenhum tipo de sinal visual do envio do formulário com sucesso ou erro devido ao tempo limitado para o projeto.
